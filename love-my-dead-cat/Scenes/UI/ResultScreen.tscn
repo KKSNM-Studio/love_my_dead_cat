@@ -1,3 +1,58 @@
-[gd_scene format=3 uid="uid://bfws6r8edgvy3"]
+[gd_scene load_steps=2 format=3 uid="uid://c32rnlde6x2tf"]
 
-[node name="ResultScreen" type="Node2D"]
+[ext_resource type="Script" uid="uid://b1b07llvw6dk4" path="res://Scenes/UI/ResultScreen.gd" id="1_tbxvs"]
+
+[node name="ResultScreen" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbxvs")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 193.0
+offset_top = -3.0
+offset_right = 366.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 48
+text = "RESULT"
+horizontal_alignment = 1
+
+[node name="PerformanceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 67.0
+offset_right = 315.0
+offset_bottom = 90.0
+text = "GOOD!!"
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 309.0
+offset_right = 318.0
+offset_bottom = 332.0
+text = "Score 1"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 166.0
+offset_right = 289.0
+offset_bottom = 206.0
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 346.0
+offset_right = 328.0
+offset_bottom = 377.0
+text = "Continue"

@@ -17,6 +17,7 @@ extends Control
 @onready var tree = $Objects/Tree
 @onready var picture = $Objects/Picture
 @onready var box = $Objects/Box
+@onready var lamp = $Objects/Lamp
 
 # Signs
 @onready var signs_container = $Signs
@@ -56,13 +57,13 @@ func setup_day():
 	# Change background based on day (darker each day)
 	match day:
 		1:
-			background.texture = load("res://Assets/Art/Backgrounds/living_room_day1.png")
+			background.texture = load("res://Assets/Art/Backgrounds/Living_Room_BG.png")
 		2:
 			background.texture = load("res://Assets/Art/Backgrounds/living_room_day2.png")
 		3:
 			background.texture = load("res://Assets/Art/Backgrounds/living_room_day3.png")
 		4:
-			background.texture = load("res://Assets/Art/Backgrounds/living_room_day4.png")
+			background.texture = load("res://Assets/Art/Backgrounds/living_room_day1.png")
 	
 	# Show signs for this day
 	show_signs_for_day(day)
@@ -90,6 +91,8 @@ func setup_clickable_objects():
 	
 	if picture:
 		picture.gui_input.connect(_on_picture_clicked)
+#the other text like lamp,door,box non define dont forget
+
 
 # ===== UI UPDATES =====
 func update_ui():

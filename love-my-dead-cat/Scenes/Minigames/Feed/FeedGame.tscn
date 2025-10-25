@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqja6wadgihq1"]
+
+[ext_resource type="Script" uid="uid://megl702xtw4" path="res://Scenes/Minigames/Feed/FeedGame.gd" id="1_63fq1"]
+[ext_resource type="PackedScene" uid="uid://rpwdwyvsxnup" path="res://Scenes/UI/QTE/QTECircle.tscn" id="1_do3r4"]
+
+[node name="FeedGame" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_63fq1")
+
+[node name="FoodChoice" type="Panel" parent="."]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 0
+offset_left = -301.0
+offset_top = -186.0
+offset_right = 299.0
+offset_bottom = 214.0
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CatFoodButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+text = "Cat Food"
+
+[node name="RawMeatButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+text = "Raw Meat"
+
+[node name="QTEContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QteCircle" parent="QTEContainer" instance=ExtResource("1_do3r4")]
+visible = false
+layout_mode = 0
+
+[node name="HeartUI" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Heart" type="TextureRect" parent="HeartUI"]
+layout_mode = 2
+
+[node name="RoundLabel" type="Label" parent="HeartUI"]
+layout_mode = 2
+text = "Round 1 / 3"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ButtonContainer/CatFoodButton" to="." method="_on_cat_food_chosen"]
+[connection signal="pressed" from="ButtonContainer/RawMeatButton" to="." method="_on_raw_meat_chosen"]
+[connection signal="qte_completed" from="QTEContainer/QteCircle" to="." method="_on_qte_completed"]

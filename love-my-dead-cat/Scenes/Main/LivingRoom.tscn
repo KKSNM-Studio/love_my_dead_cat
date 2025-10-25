@@ -1,119 +1,137 @@
-[gd_scene load_steps=8 format=3 uid="uid://6c6hijxtdelr"]
+[gd_scene load_steps=10 format=3 uid="uid://cpknsu6jt16nk"]
 
 [ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="1_643uc"]
-[ext_resource type="Script" uid="uid://djxyag0dss1ko" path="res://Scenes/Main/LivingRoom.gd" id="1_y52pq"]
+[ext_resource type="Script" uid="uid://cmi0fsp85br5q" path="res://Scenes/Main/LivingRoom.gd" id="1_y52pq"]
+[ext_resource type="Texture2D" uid="uid://s3aw61nffylq" path="res://Assets/Art/RoomObjects/sofar.png" id="2_6vhj2"]
 [ext_resource type="Texture2D" uid="uid://bnym4vymymuwx" path="res://Assets/Art/RoomObjects/clock.png" id="2_evveo"]
 [ext_resource type="Texture2D" uid="uid://duhblvtfrceax" path="res://Assets/Art/RoomObjects/plant.png" id="3_y52pq"]
 [ext_resource type="Texture2D" uid="uid://crvr5yuykbjn2" path="res://Assets/Art/RoomObjects/pic.png" id="4_6vhj2"]
 [ext_resource type="Texture2D" uid="uid://1gv430e1tqig" path="res://Assets/Art/RoomObjects/box.png" id="5_2ktva"]
 [ext_resource type="Texture2D" uid="uid://bnt50et8hslxp" path="res://Assets/Art/RoomObjects/mail.png" id="6_3cbq3"]
+[ext_resource type="Texture2D" uid="uid://dfmegyvcjcyvb" path="res://Assets/Art/RoomObjects/lamp.png" id="8_2ktva"]
 
-[node name="LivingRoom" type="Node2D"]
-script = ExtResource("1_y52pq")
-
-[node name="Background" type="TextureRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_643uc")
-
-[node name="Cat" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(300, 300)
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -631.0
-offset_top = 190.0
-offset_right = -331.0
-offset_bottom = 490.0
-grow_vertical = 2
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Day1" type="Label" parent="UI"]
-offset_left = 71.0
-offset_top = 26.0
-offset_right = 157.0
-offset_bottom = 71.0
-theme_override_font_sizes/font_size = 32
-text = "Day 1"
-
-[node name="AffinityBar" type="ProgressBar" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 115.0
-offset_top = 35.0
-offset_right = 515.0
-offset_bottom = 65.0
-grow_horizontal = 2
-max_value = 1.0
-value = 0.5
-
-[node name="Objects" type="Node2D" parent="."]
-
-[node name="Sofa" type="TextureRect" parent="Objects"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Clock" type="TextureRect" parent="Objects"]
-visible = false
-offset_left = 371.0
-offset_top = 673.0
-offset_right = 458.0
-offset_bottom = 768.0
-texture = ExtResource("2_evveo")
-
-[node name="Tree" type="TextureRect" parent="Objects"]
-visible = false
-offset_left = 1.0
-offset_top = 553.0
-offset_right = 297.0
-offset_bottom = 946.0
-texture = ExtResource("3_y52pq")
-
-[node name="Picture" type="TextureRect" parent="Objects"]
-visible = false
-offset_left = 129.0
-offset_top = 209.0
-offset_right = 295.0
-offset_bottom = 356.0
-mouse_filter = 0
-texture = ExtResource("4_6vhj2")
-
-[node name="Box" type="TextureRect" parent="Objects"]
-visible = false
-offset_left = 1441.0
-offset_top = 778.0
-offset_right = 1780.0
-offset_bottom = 990.0
-texture = ExtResource("5_2ktva")
-
-[node name="Signs" type="Node2D" parent="Objects"]
-
-[node name="Letter" type="TextureRect" parent="Objects"]
-visible = false
-offset_left = 1267.0
-offset_top = 594.0
-offset_right = 1353.0
-offset_bottom = 654.0
-texture = ExtResource("6_3cbq3")
-
-[node name="CareMenu" type="Panel" parent="Objects"]
-visible = false
-custom_minimum_size = Vector2(800, 600)
+[node name="LivingRoom" type="Control"]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -300.0
-offset_right = 400.0
-offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y52pq")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_643uc")
+
+[node name="Cat" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = 778.0
+offset_right = 301.0
+offset_bottom = 1078.0
+grow_vertical = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DayLabel" type="Label" parent="UI"]
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 90.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 32
+text = "Day 1"
+
+[node name="AffinityBar" type="ProgressBar" parent="UI"]
+custom_minimum_size = Vector2(400, 30)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 141.0
+offset_top = 1.0
+offset_right = 541.0
+offset_bottom = 31.0
+grow_horizontal = 2
+max_value = 1.0
+value = 0.5
+rounded = true
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Sofa" type="TextureRect" parent="Objects"]
+visible = false
+offset_left = -778.0
+offset_top = 10.0
+offset_right = -18.0
+offset_bottom = 432.0
+mouse_filter = 0
+texture = ExtResource("2_6vhj2")
+
+[node name="Clock" type="TextureRect" parent="Objects"]
+visible = false
+offset_left = -584.0
+offset_top = 132.0
+offset_right = -497.0
+offset_bottom = 227.0
+mouse_filter = 0
+texture = ExtResource("2_evveo")
+
+[node name="Tree" type="TextureRect" parent="Objects"]
+visible = false
+offset_left = -965.0
+offset_top = 10.0
+offset_right = -669.0
+offset_bottom = 403.0
+mouse_filter = 0
+texture = ExtResource("3_y52pq")
+
+[node name="Picture" type="TextureRect" parent="Objects"]
+offset_left = -833.0
+offset_top = -330.0
+offset_right = -667.0
+offset_bottom = -183.0
+mouse_filter = 0
+texture = ExtResource("4_6vhj2")
+
+[node name="Box" type="TextureRect" parent="Objects"]
+offset_left = 480.0
+offset_top = 237.0
+offset_right = 819.0
+offset_bottom = 449.0
+mouse_filter = 0
+texture = ExtResource("5_2ktva")
+
+[node name="Lamp" type="TextureRect" parent="Objects"]
+offset_left = -8.0
+offset_top = -203.0
+offset_right = 196.0
+offset_bottom = 376.0
+texture = ExtResource("8_2ktva")
+
+[node name="Signs" type="Node2D" parent="."]
+
+[node name="Letter" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 60.0
+offset_right = 391.0
+offset_bottom = 120.0
+texture = ExtResource("6_3cbq3")
+
+[node name="CareMenu" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(800, 600)
+layout_mode = 0
+offset_left = -475.0
+offset_top = -292.0
+offset_right = 325.0
+offset_bottom = 308.0

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Love_my_dead_cat"
-run/main_scene="uid://6c6hijxtdelr"
+run/main_scene="uid://cpknsu6jt16nk"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
