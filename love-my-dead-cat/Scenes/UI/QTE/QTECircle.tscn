@@ -1,19 +1,24 @@
-[gd_scene format=3 uid="uid://cs2jy6xyr4p2x"]
+[gd_scene load_steps=2 format=3 uid="uid://cs2jy6xyr4p2x"]
+
+[ext_resource type="Script" uid="uid://55ncnilob501" path="res://Scenes/UI/QTE/QTECircle.gd" id="1_wao46"]
 
 [node name="QteCircle" type="Node2D"]
+script = ExtResource("1_wao46")
 
 [node name="CircleSprite" type="TextureRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -200.0
 offset_top = -200.0
 offset_right = 200.0
 offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Indicator" type="Sprite2D" parent="CircleSprite"]
 position = Vector2(0, -150)
+
+[node name="PerfectZone" type="Polygon2D" parent="CircleSprite"]
+color = Color(1.0588765e-06, 0.99026316, 0.43339726, 1)
+
+[node name="SafeZone" type="Polygon2D" parent="CircleSprite"]
+color = Color(1, 1, 0, 1)
+
+[node name="DangerZone" type="Polygon2D" parent="CircleSprite"]
+color = Color(1, 0, 0, 1)
