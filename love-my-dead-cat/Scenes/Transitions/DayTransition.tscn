@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bvoadkc3b8sam"]
+
+[node name="DayTransition" type="Node2D"]
