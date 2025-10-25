@@ -1,7 +1,45 @@
-[gd_scene format=3 uid="uid://6c6hijxtdelr"]
+[gd_scene load_steps=2 format=3 uid="uid://6c6hijxtdelr"]
+
+[ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="1_643uc"]
 
 [node name="LivingRoom" type="Node2D"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_643uc")
+
+[node name="Cat" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_vertical = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Day1" type="Label" parent="UI"]
+offset_left = -869.0
+offset_top = -510.0
+offset_right = -783.0
+offset_bottom = -465.0
+theme_override_font_sizes/font_size = 32
+text = "Day 1"
+
+[node name="AffinityBar" type="ProgressBar" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.0
+offset_top = -521.0
+offset_right = -376.0
+offset_bottom = -491.0
+grow_horizontal = 2
+max_value = 1.0
+value = 0.5
