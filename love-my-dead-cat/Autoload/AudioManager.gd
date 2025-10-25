@@ -8,9 +8,7 @@ extends Node
 # ===== AUDIO PLAYERS =====
 # Create these as children in the scene tree
 var music_player: AudioStreamPlayer
-var amb
-
-ient_player: AudioStreamPlayer
+var ambient_player: AudioStreamPlayer
 var sfx_player: AudioStreamPlayer
 
 # ===== AUDIO SETTINGS =====
