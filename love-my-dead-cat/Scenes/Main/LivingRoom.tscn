@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://6c6hijxtdelr"]
+[gd_scene load_steps=8 format=3 uid="uid://6c6hijxtdelr"]
 
 [ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="1_643uc"]
+[ext_resource type="Script" uid="uid://djxyag0dss1ko" path="res://Scenes/Main/LivingRoom.gd" id="1_y52pq"]
+[ext_resource type="Texture2D" uid="uid://bnym4vymymuwx" path="res://Assets/Art/RoomObjects/clock.png" id="2_evveo"]
+[ext_resource type="Texture2D" uid="uid://duhblvtfrceax" path="res://Assets/Art/RoomObjects/plant.png" id="3_y52pq"]
+[ext_resource type="Texture2D" uid="uid://crvr5yuykbjn2" path="res://Assets/Art/RoomObjects/pic.png" id="4_6vhj2"]
+[ext_resource type="Texture2D" uid="uid://1gv430e1tqig" path="res://Assets/Art/RoomObjects/box.png" id="5_2ktva"]
+[ext_resource type="Texture2D" uid="uid://bnt50et8hslxp" path="res://Assets/Art/RoomObjects/mail.png" id="6_3cbq3"]
 
 [node name="LivingRoom" type="Node2D"]
+script = ExtResource("1_y52pq")
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -17,9 +24,10 @@ custom_minimum_size = Vector2(300, 300)
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -150.0
-offset_right = 300.0
-offset_bottom = 150.0
+offset_left = -631.0
+offset_top = 190.0
+offset_right = -331.0
+offset_bottom = 490.0
 grow_vertical = 2
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -43,3 +51,62 @@ offset_bottom = -491.0
 grow_horizontal = 2
 max_value = 1.0
 value = 0.5
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Sofa" type="TextureRect" parent="Objects"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Clock" type="TextureRect" parent="Objects"]
+offset_left = -590.0
+offset_top = 134.0
+offset_right = -503.0
+offset_bottom = 229.0
+texture = ExtResource("2_evveo")
+
+[node name="Tree" type="TextureRect" parent="Objects"]
+offset_left = -963.0
+offset_top = 10.0
+offset_right = -667.0
+offset_bottom = 403.0
+texture = ExtResource("3_y52pq")
+
+[node name="Picture" type="TextureRect" parent="Objects"]
+offset_left = -835.0
+offset_top = -331.0
+offset_right = -669.0
+offset_bottom = -184.0
+mouse_filter = 0
+texture = ExtResource("4_6vhj2")
+
+[node name="Box" type="TextureRect" parent="Objects"]
+offset_left = 481.0
+offset_top = 233.0
+offset_right = 820.0
+offset_bottom = 445.0
+texture = ExtResource("5_2ktva")
+
+[node name="Signs" type="Node2D" parent="Objects"]
+
+[node name="Letter" type="TextureRect" parent="Objects"]
+offset_left = 303.0
+offset_top = 53.0
+offset_right = 389.0
+offset_bottom = 113.0
+texture = ExtResource("6_3cbq3")
+
+[node name="CareMenu" type="Panel" parent="Objects"]
+visible = false
+custom_minimum_size = Vector2(800, 600)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
