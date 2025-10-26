@@ -16,43 +16,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbxvs")
 
-[node name="TitleLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 193.0
-offset_top = -3.0
-offset_right = 366.0
-offset_bottom = 64.0
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="TopicLabel" type="Label" parent="Content"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "RESULT"
 horizontal_alignment = 1
 
-[node name="PerformanceLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 257.0
-offset_top = 67.0
-offset_right = 315.0
-offset_bottom = 90.0
+[node name="ResultLabel" type="Label" parent="Content"]
+layout_mode = 2
 text = "GOOD!!"
 
-[node name="ScoreLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 262.0
-offset_top = 309.0
-offset_right = 318.0
-offset_bottom = 332.0
+[node name="ScoreLabel" type="Label" parent="Content"]
+layout_mode = 2
 text = "Score 1"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 249.0
-offset_top = 166.0
-offset_right = 289.0
-offset_bottom = 206.0
+[node name="PhotoResult" type="TextureRect" parent="Content"]
+layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 249.0
-offset_top = 346.0
-offset_right = 328.0
-offset_bottom = 377.0
+[node name="ContinueButton" type="Button" parent="Content"]
+layout_mode = 2
 text = "Continue"
+
+[node name="DescriptionLabel" type="Label" parent="Content"]
+layout_mode = 2
