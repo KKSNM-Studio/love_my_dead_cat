@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://cpsj6i3fvvh3w"]
+[gd_scene load_steps=2 format=3 uid="uid://cpsj6i3fvvh3w"]
 
-[node name="GoodEnding" type="Node2D"]
+[ext_resource type="Script" uid="uid://dv2ohn8lt7uan" path="res://Scenes/Endings/GoodEnding.gd" id="1_nlnts"]
+
+[node name="GoodEnding" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nlnts")
