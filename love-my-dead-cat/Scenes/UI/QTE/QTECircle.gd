@@ -6,9 +6,11 @@ signal qte_completed(result: String, score: int)  # "perfect", "safe", "danger"
 # ===== NODES =====
 @onready var circle_sprite = $CircleSprite
 @onready var indicator = $Indicator
-@onready var perfect_zone: Polygon2D = $DangerZone/SafeZone/PerfectZone
-@onready var safe_zone: Polygon2D = $DangerZone/SafeZone
+@onready var perfect_zone: Polygon2D = $PerfectZone
+@onready var safe_zone: Polygon2D = $SafeZone
 @onready var danger_zone: Polygon2D = $DangerZone
+@onready var safe_zone_pivot = $safeMark
+@onready var perfect_zone_pivot = $perfectMark
 
 # ===== SETTINGS =====
 var rotation_speed: float = 180.0
@@ -16,8 +18,8 @@ var is_active: bool = false
 var has_clicked: bool = false
 
 # Zone settings
-var perfect_zone_size: float = 50.0
-var safe_zone_size: float = 120.0
+var perfect_zone_size: float = 10.0
+var safe_zone_size: float = 70.0
 var radius: float = 150.0
 var target_angle: float = 0.0
 
@@ -32,11 +34,11 @@ func _ready():
 	randomize_target()
 	perfect_zone_size = Global.get_perfect_zone_size()
 
-	create_arc(perfect_zone, radius, perfect_zone_size, Color(0, 1, 0, .5))
-	create_arc(safe_zone, radius, safe_zone_size, Color(1, 0.85, 0, .5))
-	create_arc(danger_zone, radius, 360, Color(1, 0, 0, .5))
+	create_arc(perfect_zone, radius, perfect_zone_size, Color(0, 1, 0, 0))
+	create_arc(safe_zone, radius, safe_zone_size, Color(1, 0.85, 0, 0))
+	create_arc(danger_zone, radius, 360, Color(1, 0, 0, 0))
 	
-	start_qte()
+	#start_qte()
 
 # ===== PROCESS LOOP =====
 func _process(delta):
@@ -100,10 +102,13 @@ func check_hit():
 
 func randomize_target():
 	target_angle = randf_range(0, 360)
+	#target_angle = 360
 
 func update_zone_visuals():
 	perfect_zone.rotation_degrees = target_angle
 	safe_zone.rotation_degrees = target_angle
+	safe_zone_pivot.rotation_degrees = target_angle
+	perfect_zone_pivot.rotation_degrees = target_angle
 	danger_zone.rotation_degrees = 0
 
 func create_arc(zone: Polygon2D, r: float, angle_deg: float, color: Color):
