@@ -1,99 +1,82 @@
-# QTECircle.gd
-# Reusable QTE (Quick Time Event) system
-# Place in: Scenes/UI/QTE/QTECircle.gd
-# Used by all minigames
-
 extends Control
 
 # ===== SIGNALS =====
 signal qte_completed(result: String, score: int)  # "perfect", "safe", "danger"
 
-# ===== NODES (Create these in scene) =====
-@onready var circle_sprite = $CircleSprite  # The outer circle
-@onready var indicator = $Indicator  # Rotating pointer
-@onready var perfect_zone = $PerfectZone  # Green zone visual
-@onready var safe_zone = $SafeZone  # Yellow zone visual
-@onready var danger_zone = $DangerZone  # Red zone visual
+# ===== NODES =====
+@onready var circle_sprite = $CircleSprite
+@onready var indicator = $Indicator
+@onready var perfect_zone: Polygon2D = $PerfectZone
+@onready var safe_zone: Polygon2D = $SafeZone
+@onready var danger_zone: Polygon2D = $DangerZone
+@onready var safe_zone_pivot = $safeMark
+@onready var perfect_zone_pivot = $perfectMark
 
-# ===== QTE SETTINGS =====
-var rotation_speed: float = 180.0  # Degrees per second
+# ===== SETTINGS =====
+var rotation_speed: float = 180.0
 var is_active: bool = false
 var has_clicked: bool = false
 
-# Zone angles (in degrees)
-var perfect_zone_size: float = 60.0
-var safe_zone_size: float = 120.0
-# Danger zone is everything else
-
-# Zone start angle (where perfect zone begins)
+# Zone settings
+var perfect_zone_size: float = 10.0
+var safe_zone_size: float = 70.0
+var radius: float = 150.0
 var target_angle: float = 0.0
 
-# ===== SCORE VALUES =====
+# Score
 const PERFECT_SCORE = 3
 const SAFE_SCORE = 1
 const DANGER_SCORE = 0
 
 # ===== INITIALIZATION =====
 func _ready():
-	hide()  # Start hidden
-	
-	# Set random target angle each time
+	hide()
 	randomize_target()
-	
-	# Update zone sizes from Global (based on cat mood)
 	perfect_zone_size = Global.get_perfect_zone_size()
 
+	create_arc(perfect_zone, radius, perfect_zone_size, Color(0, 1, 0, 0))
+	create_arc(safe_zone, radius, safe_zone_size, Color(1, 0.85, 0, 0))
+	create_arc(danger_zone, radius, 360, Color(1, 0, 0, 0))
+	
+	#start_qte()
+
+# ===== PROCESS LOOP =====
 func _process(delta):
 	if is_active and not has_clicked:
-		# Rotate indicator
 		indicator.rotation_degrees += rotation_speed * delta
-		
-		# Wrap around at 360
 		if indicator.rotation_degrees >= 360:
 			indicator.rotation_degrees -= 360
 
-# ===== QTE CONTROL =====
+# ===== START QTE =====
 func start_qte():
 	is_active = true
 	has_clicked = false
 	show()
-	
-	# Reset indicator position
+
 	indicator.rotation_degrees = 0
-	
-	# Randomize target zone position
 	randomize_target()
-	
-	# Update zone visuals
 	update_zone_visuals()
-	
-	# Play countdown sound
+
 	AudioManager.play_qte_countdown()
 
+# ===== HIT CHECK =====
 func _input(event):
 	if is_active and not has_clicked:
-		if event is InputEventMouseButton and event.pressed:
-			if event.button_index == MOUSE_BUTTON_LEFT:
-				check_hit()
-				has_clicked = true
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			check_hit()
+			has_clicked = true
 
 func check_hit():
 	is_active = false
-	
-	# Get current indicator angle
 	var current_angle = indicator.rotation_degrees
-	
-	# Calculate difference from target
 	var angle_diff = abs(current_angle - target_angle)
-	
-	# Handle wrap-around (e.g., 350° and 10° should be close)
+
 	if angle_diff > 180:
 		angle_diff = 360 - angle_diff
-	
-	# Determine hit quality
+
 	var result: String
 	var score: int
-	
+
 	if angle_diff <= perfect_zone_size / 2:
 		result = "perfect"
 		score = PERFECT_SCORE
@@ -109,59 +92,62 @@ func check_hit():
 		score = DANGER_SCORE
 		flash_zone(danger_zone, Color.RED)
 		AudioManager.play_qte_danger()
-		
-		# Lose a heart on danger hit
 		Global.lose_heart()
-	
-	# Show result briefly
+
 	await get_tree().create_timer(0.5).timeout
-	
-	# Emit completion signal
 	emit_signal("qte_completed", result, score)
-	
 	hide()
 
-# ===== VISUAL UPDATES =====
+# ===== ZONE LOGIC =====
+
 func randomize_target():
 	target_angle = randf_range(0, 360)
+	#target_angle = 360
 
 func update_zone_visuals():
-	# Update visual representations of zones
-	# This depends on how you design the zones visually
-	
-	# Position perfect zone at target angle
-	if perfect_zone:
-		perfect_zone.rotation_degrees = target_angle
-		# Scale to size (implement in scene as Polygon2D or similar)
-	
-	# Position safe zone
-	if safe_zone:
-		safe_zone.rotation_degrees = target_angle
-	
-	# Danger zone is the rest (full circle minus safe)
+	perfect_zone.rotation_degrees = target_angle
+	safe_zone.rotation_degrees = target_angle
+	safe_zone_pivot.rotation_degrees = target_angle
+	perfect_zone_pivot.rotation_degrees = target_angle
+	danger_zone.rotation_degrees = 0
 
-func flash_zone(zone_node: Node2D, color: Color):
-	if zone_node:
-		var original_modulate = zone_node.modulate
-		zone_node.modulate = color
-		
-		var tween = create_tween()
-		tween.tween_property(zone_node, "modulate", original_modulate, 0.3)
+func create_arc(zone: Polygon2D, r: float, angle_deg: float, color: Color):
+	var points = []
+	points.append(Vector2.ZERO)
 
-# ===== DIFFICULTY ADJUSTMENT =====
+	var half_angle = deg_to_rad(angle_deg / 2)
+	var step = deg_to_rad(3)
+
+	var a = -half_angle
+	while a <= half_angle:
+		points.append(Vector2(cos(a) * r, sin(a) * r))
+		a += step
+
+	zone.polygon = points
+	zone.color = color
+	zone.antialiased = true
+
+func flash_zone(zone_node: Polygon2D, color: Color):
+	var original = zone_node.modulate
+	zone_node.modulate = color
+	var tween = create_tween()
+	tween.tween_property(zone_node, "modulate", original, 0.3)
+
+# ===== DIFFICULTY =====
 func set_rotation_speed(speed: float):
-	rotation_speed = speed
+	rotation_speed = clamp(speed, 30, 500)
 
 func increase_difficulty():
-	# Make it faster or zones smaller
-	rotation_speed += 30.0
-	rotation_speed = min(rotation_speed, 360.0)  # Cap max speed
+	rotation_speed = min(rotation_speed + 20, 500)
+	perfect_zone_size = max(perfect_zone_size - 5, 15)
+	create_arc(perfect_zone, radius, perfect_zone_size, perfect_zone.color)
 
 func reset_difficulty():
-	rotation_speed = 180.0
+	rotation_speed = 180
 	perfect_zone_size = Global.get_perfect_zone_size()
+	create_arc(perfect_zone, radius, perfect_zone_size, perfect_zone.color)
 
-# ===== CLEANUP =====
+# ===== STOP =====
 func stop_qte():
 	is_active = false
 	has_clicked = false
