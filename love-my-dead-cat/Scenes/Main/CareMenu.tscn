@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bngkv28tgqial"]
+[gd_scene load_steps=2 format=3 uid="uid://bngkv28tgqial"]
 
-[node name="CareMenu" type="Node2D"]
+[ext_resource type="Script" uid="uid://dw6u2kytif2k1" path="res://Scenes/Main/CareMenu.gd" id="1_apocg"]
+
+[node name="CareMenu" type="Panel"]
+script = ExtResource("1_apocg")

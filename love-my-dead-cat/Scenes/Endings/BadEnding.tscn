@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://dhsm8l1u3ywau"]
+[gd_scene load_steps=2 format=3 uid="uid://dhsm8l1u3ywau"]
 
-[node name="BadEnding" type="Node2D"]
+[ext_resource type="Script" uid="uid://etqwg5lqgc33" path="res://Scenes/Endings/BadEnding.gd" id="1_rsb8r"]
+
+[node name="BadEnding" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rsb8r")

@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://dj3flpeuy1myn"]
+[gd_scene load_steps=2 format=3 uid="uid://cifudk4cion5o"]
 
-[node name="ShowerGame" type="Node2D"]
+[ext_resource type="Script" uid="uid://crjmbsc2jntbt" path="res://Scenes/Minigames/Shower/ShowerGame.gd" id="1_pax2d"]
+
+[node name="ShowerGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pax2d")

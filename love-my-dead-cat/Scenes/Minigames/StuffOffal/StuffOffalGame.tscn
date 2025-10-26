@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://kgrrkgtfhoyf"]
+[gd_scene load_steps=2 format=3 uid="uid://kgrrkgtfhoyf"]
 
-[node name="StuffOffalGame" type="Node2D"]
+[ext_resource type="Script" uid="uid://ekfi3rjha4bl" path="res://Scenes/Minigames/StuffOffal/StuffOffalGame.gd" id="1_mmc7p"]
+
+[node name="StuffOffalGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mmc7p")
