@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpknsu6jt16nk"]
+[gd_scene load_steps=11 format=3 uid="uid://cpknsu6jt16nk"]
 
 [ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="1_643uc"]
 [ext_resource type="Script" uid="uid://cmi0fsp85br5q" path="res://Scenes/Main/LivingRoom.gd" id="1_y52pq"]
 [ext_resource type="Texture2D" uid="uid://s3aw61nffylq" path="res://Assets/Art/RoomObjects/sofar.png" id="2_6vhj2"]
 [ext_resource type="Texture2D" uid="uid://bnym4vymymuwx" path="res://Assets/Art/RoomObjects/clock.png" id="2_evveo"]
+[ext_resource type="PackedScene" uid="uid://rpwdwyvsxnup" path="res://Scenes/UI/QTE/QTECircle.tscn" id="3_3cbq3"]
 [ext_resource type="Texture2D" uid="uid://duhblvtfrceax" path="res://Assets/Art/RoomObjects/plant.png" id="3_y52pq"]
 [ext_resource type="Texture2D" uid="uid://crvr5yuykbjn2" path="res://Assets/Art/RoomObjects/pic.png" id="4_6vhj2"]
 [ext_resource type="Texture2D" uid="uid://1gv430e1tqig" path="res://Assets/Art/RoomObjects/box.png" id="5_2ktva"]
@@ -64,6 +65,8 @@ grow_horizontal = 2
 max_value = 1.0
 value = 0.5
 rounded = true
+
+[node name="QteCircle" parent="UI" instance=ExtResource("3_3cbq3")]
 
 [node name="Objects" type="Node2D" parent="."]
 

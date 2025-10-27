@@ -71,6 +71,7 @@ scale = Vector2(0.75399995, 0.75399995)
 texture = ExtResource("4_0mkei")
 
 [node name="Indicator" type="Sprite2D" parent="."]
+rotation = -1.5707964
 scale = Vector2(0.095, 0.095)
 
 [node name="Indicator2" type="Sprite2D" parent="Indicator"]
