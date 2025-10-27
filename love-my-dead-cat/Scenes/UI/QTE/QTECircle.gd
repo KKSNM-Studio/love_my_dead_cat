@@ -13,7 +13,7 @@ signal qte_completed(result: String, score: int)  # "perfect", "safe", "danger"
 @onready var perfect_zone_pivot = $perfectMark
 
 # ===== SETTINGS =====
-var rotation_speed: float = 180.0
+var rotation_speed: float = 100.0
 var is_active: bool = false
 var has_clicked: bool = false
 
@@ -33,22 +33,23 @@ func _ready():
 	hide()
 	randomize_target()
 	perfect_zone_size = Global.get_perfect_zone_size()
-
+	
 	create_arc(perfect_zone, radius, perfect_zone_size, Color(0, 1, 0, 0))
 	create_arc(safe_zone, radius, safe_zone_size, Color(1, 0.85, 0, 0))
 	create_arc(danger_zone, radius, 360, Color(1, 0, 0, 0))
 	
-	#start_qte()
+	start_qte()
 
 # ===== PROCESS LOOP =====
 func _process(delta):
 	if is_active and not has_clicked:
 		indicator.rotation_degrees += rotation_speed * delta
 		if indicator.rotation_degrees >= 360:
-			indicator.rotation_degrees -= 360
+			fail();
 
 # ===== START QTE =====
 func start_qte():
+	indicator.rotation_degrees = 0;
 	is_active = true
 	has_clicked = false
 	show()
@@ -98,10 +99,18 @@ func check_hit():
 	emit_signal("qte_completed", result, score)
 	hide()
 
+func fail():
+	flash_zone(danger_zone, Color.RED)
+	AudioManager.play_qte_danger()
+	Global.lose_heart()
+	emit_signal("qte_completed", "danger", DANGER_SCORE)
+	is_active = false
+	has_clicked = true
+	hide();
 # ===== ZONE LOGIC =====
 
 func randomize_target():
-	target_angle = randf_range(0, 360)
+	target_angle = randf_range(80, 320)
 	#target_angle = 360
 
 func update_zone_visuals():
