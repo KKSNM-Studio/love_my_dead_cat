@@ -68,7 +68,6 @@ rounded = true
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Sofa" type="TextureRect" parent="Objects"]
-visible = false
 offset_left = -778.0
 offset_top = 10.0
 offset_right = -18.0
@@ -86,7 +85,6 @@ mouse_filter = 0
 texture = ExtResource("2_evveo")
 
 [node name="Tree" type="TextureRect" parent="Objects"]
-visible = false
 offset_left = -965.0
 offset_top = 10.0
 offset_right = -669.0
