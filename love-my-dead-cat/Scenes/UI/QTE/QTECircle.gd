@@ -13,7 +13,7 @@ signal qte_completed(result: String, score: int)  # "perfect", "safe", "danger"
 @onready var perfect_zone_pivot = $perfectMark
 
 # ===== SETTINGS =====
-var rotation_speed: float = 100.0
+var rotation_speed: float = 180.0
 var is_active: bool = false
 var has_clicked: bool = false
 

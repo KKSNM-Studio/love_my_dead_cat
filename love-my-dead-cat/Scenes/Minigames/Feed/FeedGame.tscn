@@ -39,11 +39,12 @@ text = "Raw Meat"
 
 [node name="QTEContainer" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 120.0
+offset_top = -84.0
+offset_right = 160.0
+offset_bottom = -44.0
 
 [node name="QteCircle" parent="QTEContainer" instance=ExtResource("1_do3r4")]
-visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -52,6 +53,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+scale = Vector2(0.37, 0.37)
 
 [node name="UI" type="HBoxContainer" parent="."]
 layout_mode = 1
