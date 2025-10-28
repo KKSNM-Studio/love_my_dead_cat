@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://djk5nur60p7jp"]
+
+[ext_resource type="Texture2D" uid="uid://bjes0c6a7ohv4" path="res://Assets/Art/Cursors/default.PNG" id="1_fd0db"]
+[ext_resource type="Script" uid="uid://dyjq0sp4a7vv7" path="res://Autoload/hand_cursor.gd" id="2_cnanr"]
+
+[node name="Hand_cursor" type="Sprite2D"]
+z_index = 4096
+rotation = 0.25830874
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_fd0db")
+offset = Vector2(150, 180)
+script = ExtResource("2_cnanr")

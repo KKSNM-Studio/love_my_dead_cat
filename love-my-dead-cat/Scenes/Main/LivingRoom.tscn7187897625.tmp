@@ -73,6 +73,7 @@ rounded = true
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Sofa" type="TextureRect" parent="Objects"]
+visible = false
 offset_left = -778.0
 offset_top = 10.0
 offset_right = -18.0
@@ -81,6 +82,7 @@ mouse_filter = 0
 texture = ExtResource("2_6vhj2")
 
 [node name="Clock" type="TextureRect" parent="Objects"]
+visible = false
 offset_left = -584.0
 offset_top = 132.0
 offset_right = -497.0
@@ -120,17 +122,14 @@ offset_bottom = 376.0
 texture = ExtResource("8_2ktva")
 
 [node name="Sofa2" type="Sprite2D" parent="Objects"]
-visible = false
 position = Vector2(-394, 220)
 texture = ExtResource("2_6vhj2")
 
 [node name="Area2D" type="Area2D" parent="Objects/Sofa2"]
-disable_mode = 2
-priority = 110
 script = ExtResource("5_4kmbc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Sofa2/Area2D"]
-position = Vector2(39, -4)
+position = Vector2(23, -8)
 shape = SubResource("RectangleShape2D_2ktva")
 
 [node name="Signs" type="Node2D" parent="."]
@@ -151,6 +150,3 @@ offset_left = -475.0
 offset_top = -292.0
 offset_right = 325.0
 offset_bottom = 308.0
-
-[connection signal="mouse_entered" from="Objects/Sofa" to="." method="_on_sofa_mouse_entered"]
-[connection signal="mouse_exited" from="Objects/Sofa" to="." method="_on_sofa_mouse_exited"]

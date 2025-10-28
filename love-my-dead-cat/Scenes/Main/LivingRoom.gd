@@ -92,8 +92,6 @@ func setup_clickable_objects():
 	if picture:
 		picture.gui_input.connect(_on_picture_clicked)
 #the other text like lamp,door,box non define dont forget
-
-
 # ===== UI UPDATES =====
 func update_ui():
 	if day_label:
@@ -134,6 +132,7 @@ func _on_cat_clicked(event: InputEvent):
 
 # Clock
 func _on_clock_hover():
+	HandCursor.set_hover()
 	clock.modulate = Color(1.2, 1.2, 1.2)
 
 func _on_clock_clicked(event: InputEvent):
@@ -143,7 +142,8 @@ func _on_clock_clicked(event: InputEvent):
 
 # Sofa
 func _on_sofa_hover():
-	sofa.modulate = Color(1.1, 1.1, 1.1)
+	HandCursor.set_hover()
+	sofa.modulate = Color(1.0, 0.271, 0.009, 1.0)
 
 func _on_sofa_clicked(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed:
@@ -257,12 +257,13 @@ func get_sign_message(sign_id: String) -> String:
 
 # ===== NOTE SYSTEM =====
 func show_note(message: String):
-	# Create or show note popup
-	var note_popup = load("res://Scenes/UI/NotePopup.tscn").instantiate()
-	add_child(note_popup)
-	note_popup.show_message(message)
+	print("Hello World")
+	#Create or show note popup
+	#var note_popup = load("res://Scenes/UI/NotePopup.tscn").instantiate()
+	#add_child(note_popup)
+	#note_popup.show_message(message)
 	
-	AudioManager.play_sfx("res://Assets/Audio/UI/note_rustle.ogg")
+	#AudioManager.play_sfx("res://Assets/Audio/UI/note_rustle.ogg")
 
 # ===== ENDING =====
 func check_for_ending():
@@ -287,3 +288,27 @@ func _on_day_changed(new_day: int):
 
 func _on_cat_mood_changed(new_mood: String):
 	update_cat_appearance()
+	
+#==== CURSOR HARDCODE ======
+var default = preload("res://Assets/Art/Cursors/default.PNG")
+var hover = preload("res://Assets/Art/Cursors/hover.PNG")
+var SCALE_FACTOR = 0.05
+	
+func _get_scaled_texture(tex):
+	if tex == null:
+		return default
+	
+	var img = tex.get_image()
+	if img.is_empty():
+		return default
+	
+	var new_size = img.get_size() * SCALE_FACTOR
+	img.resize(new_size.x, new_size.y, Image.INTERPOLATE_LANCZOS)
+	return ImageTexture.create_from_image(img)	
+
+#func _on_sofa_mouse_entered() -> void:
+	#Input.set_custom_mouse_cursor(_get_scaled_texture(hover), Input.CURSOR_ARROW, Vector2(0.05, 0.05))
+#
+#
+#func _on_sofa_mouse_exited() -> void:
+	#Input.set_custom_mouse_cursor(_get_scaled_texture(default), Input.CURSOR_ARROW, Vector2(0.05, 0.05))

@@ -19,3 +19,4 @@ config/icon="res://icon.svg"
 
 Global="*res://Autoload/Global.gd"
 AudioManager="*res://Autoload/AudioManager.gd"
+HandCursor="*res://Autoload/hand_cursor.gd"
