@@ -37,8 +37,6 @@ func _ready():
 	create_arc(perfect_zone, radius, perfect_zone_size, Color(0, 1, 0, 0))
 	create_arc(safe_zone, radius, safe_zone_size, Color(1, 0.85, 0, 0))
 	create_arc(danger_zone, radius, 360, Color(1, 0, 0, 0))
-	
-	start_qte()
 
 # ===== PROCESS LOOP =====
 func _process(delta):
