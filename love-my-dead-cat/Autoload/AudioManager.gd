@@ -154,8 +154,6 @@ func play_day_music(day: int):
 			play_music("res://Assets/Audio/Music/day2_theme.ogg")
 		3:
 			play_music("res://Assets/Audio/Music/day3_theme.ogg")
-		4:
-			play_music("res://Assets/Audio/Music/day4_theme.ogg")
 		_:
 			play_music("res://Assets/Audio/Music/day1_theme.ogg")
 
